@@ -25,8 +25,7 @@
 		<link href="components/core-icons/core-icons.html" rel="import">
 		<link href="components/core-icons/iconsets/image-icons.html" rel="import">
 
-		<link href="components/paper-fab/paper-fab.html" rel="import">
-		<link href="components/paper-shadow/paper-shadow.html" rel="import">
+		<link href="components/post-thumb/post-thumb.html" rel="import">
 
 		<style>
 		    html, body {
@@ -78,58 +77,6 @@
 		    core-scaffold[mode=cover] .content {
 		      margin: 20px 100px 20px 0;
 		    }
-		     /* PAPER-FAB */
-		     paper-fab {
-		     	position: absolute;
-		     	top: 265px;
-		     	right: 15px;
-		    }
-		    /* PAPER_SHADOW */
-		    .card {
-		      background: white;
-		      width: 300px;
-		      height: 300px;
-		      float: left;
-		      position: relative;
-		      margin: 16px;
-		      border-radius: 2px;
-		      overflow: visible;
-		    }
-		    .card.double {
-		    	width: 500px;
-		    }
-		    .card-inner {
-		    	background: #fff;
-		      position: absolute;
-		      left: 0;
-		    }
-		    .card-inner.label {
-		    	border-top: 2px solid rgba(0,0,0,0.2);
-		    	right: 0;
-		      bottom: 0;
-		      padding: 0 65px 0 10px;
-		    }
-		    .card-inner.label p {
-		    	overflow: hidden;
-		    	white-space: nowrap;
-		    	text-overflow: ellipsis;
-		    }
-		    .img-wrapper {
-				  width:300px;
-				  text-align:center;
-				  line-height:300px;
-				  height:300px;
-				  overflow: hidden;
-				  vertical-align: top;
-		    }
-		    .card.double .img-wrapper {
-		    	width: 500px;
-		    }
-		    .img-wrapper img {
-		    	margin:-100%;
-		    	vertical-align: middle;
-			  position: relative;
-			}
 		  </style>
     </head>
     <body unresolved>
@@ -152,23 +99,8 @@
 		    
 		    <div class="content">
 		    	<!-- content goes here -->
-
-					    <div>
-					      <div class="card double">
-					        <paper-shadow z="2">
-					        	<div class="img-wrapper">
-						        	<img src="http://sociorocketnewsen.files.wordpress.com/2013/07/bullet_cat1.jpg?w=580&h=403">
-						    	</div>
-						        <div class="card-inner label">
-						        	<p>
-						        		Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-						        	</p>
-						        </div>
-						        <paper-fab focused icon="arrow-forward"></paper-fab>
-					    	</paper-shadow>
-					      </div>
-					    </div>
-					    <div>
+		    			<post-thumb show="all"></post-thumb>
+					    <!--<div>
 					      <div class="card">
 					        <paper-shadow z="2">
 					        	<div class="img-wrapper">
@@ -182,52 +114,7 @@
 						        <paper-fab focused icon="arrow-forward"></paper-fab>
 					    	</paper-shadow>
 					      </div>
-					    </div>
-					    <div>
-					      <div class="card">
-					        <paper-shadow z="2">
-					        	<div class="img-wrapper">
-						        	<img src="http://sociorocketnewsen.files.wordpress.com/2013/07/bullet_cat1.jpg?w=580&h=403">
-						    	</div>
-						        <div class="card-inner label">
-						        	<p>
-						        		Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-						        	</p>
-						        </div>
-						        <paper-fab focused icon="arrow-forward"></paper-fab>
-					    	</paper-shadow>
-					      </div>
-					    </div>
-					    <div>
-					      <div class="card">
-					        <paper-shadow z="2">
-					        	<div class="img-wrapper">
-						        	<img src="http://sociorocketnewsen.files.wordpress.com/2013/07/bullet_cat1.jpg?w=580&h=403">
-						    	</div>
-						        <div class="card-inner label">
-						        	<p>
-						        		Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-						        	</p>
-						        </div>
-						        <paper-fab focused icon="arrow-forward"></paper-fab>
-					    	</paper-shadow>
-					      </div>
-					    </div>
-					    <div>
-					      <div class="card double">
-					        <paper-shadow z="2">
-					        	<div class="img-wrapper">
-						        	<img src="http://sociorocketnewsen.files.wordpress.com/2013/07/bullet_cat1.jpg?w=580&h=403">
-						    	</div>
-						        <div class="card-inner label">
-						        	<p>
-						        		Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
-						        	</p>
-						        </div>
-						        <paper-fab focused icon="arrow-forward"></paper-fab>
-					    	</paper-shadow>
-					      </div>
-					    </div>
+					    </div>-->
 		    </div><!-- end .content -->
 		  
 		  </core-scaffold>
