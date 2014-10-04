@@ -1,0 +1,35 @@
+<script src="../platform/platform.js"></script>
+<link rel="import" href="../core-ajax/core-ajax.html">
+
+<!--
+  Provides API for Instagram feeds
+-->
+
+<polymer-element name="instagram-service" attributes="posts">
+	<template>
+		<style>
+			:host {
+				display: none;
+			}
+		</style>
+
+		<core-ajax id="ajax"
+			auto
+			url="https://api.instagram.com/v1/users/383873/media/recent?access_token=383873.674061d.f2fb01f161554166a0a7e31fae4cbe40&count=20&callback=?"
+			on-core-repsonse="{{postsLoaded}}"
+			handleAs="json">
+		</core-ajax>
+	</template>
+
+	<script>
+		Polymer('instagram-service', {
+			created: function() {
+				this.posts = [];
+			},
+			postsLoaded: function() {
+				// Copy data
+				this.posts = this.$.ajax.response.slice(0);
+			}
+		});
+	</script>
+</polymer-element>
