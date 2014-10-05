@@ -1,3 +1,45 @@
+<?php 
+session_start();
+require_once("twitterauth/twitteroauth.php"); //Path to twitteroauth library
+ 
+$twitteruser = "kaceykaso";
+//$twitteruser = html_entity_decode($_POST['screenname']);
+$notweets = 30;
+
+// add twitter auth keys here
+$consumerkey = "2s4Gtm7h7cA4Gs2ddqB0qvuJZ";
+$consumersecret = "ESZ9V0mlIoelFeQVt6PRNQWauVDyedQjLedZu4ETurxesozbhM";
+$accesstoken = "6277712-KZjaGXSrMKXN4krKrjkEMu3YvNt9EaUPotYk0TrMF6";
+$accesstokensecret = "LTlokQ3YKmgp2MFGPvQNkUIrIUpYR5ObCJfbqGIjRc2td";
+ 
+function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
+  $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
+  return $connection;
+}
+ 
+$connection = getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
+ 
+$tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".$twitteruser."&count=".$notweets);
+ 
+$encode = json_encode($tweets);
+
+//Parse request
+$response = json_decode($encode);
+
+//Global vars
+$time = '';
+$tweets = array();
+//Go through tweets
+foreach($response as $tweet)
+{
+  $tweets[] = "{$tweet->text}"; //Store tweet text
+  $hashtags[] = "{$tweet->entities->hashtags->text}"; //Store hashtags
+}
+
+
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -19,9 +61,7 @@
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
         <div class="wrapper">
-
             <aside class="menu">
                 <div class="picture"></div>
                 <div class="about">
@@ -39,7 +79,6 @@
                     </p>
                 </div>
             </aside>
-
             <div>
                 <header>
                     <nav>
@@ -48,54 +87,36 @@
                         is into 
                         <select>
                             <option value="random">Random</option>
-                            <option value="other">Other</option>
+                        <?php for ($i = 0; $i < count($hashtags); $i++) { ?>
+                            <option value="<?php echo $hashtags[$i]; ?>"><?php echo $hashtags[$i]; ?></option>
+                        <?php } ?>
                         </select>
                         <button class="search fa fa-search"></button>
                     </nav>
                 </header>
+
                 <section class="index">
 
-                    <article class="post-lg">
-                        <div class="title">
-                            This is a title of a post from somewhere
-                        </div>
-                        <button class="linkOut action"></button>
-                    </article>
+                    <?php for ($i = 0; $i < count($tweets); $i++) { 
+                        if ($picture == null) {
+                            $background = "http://p1.pichost.me/640/31/1546367.jpg";
+                        } else {
+                            $background = $picture[$i][0];
+                        } ?>
+                        <article class="post-sm" style="background: url('<?php echo $background; ?>') no-repeat center center;">
+                            <div class="title">
+                                <?php echo $tweets[$i]; ?>
+                            </div>
+                            <button class="linkOut action"></button>
+                        </article>
+                    <?php } ?>
 
-                    <article class="post-sm">
-                        <div class="title">
-                            This is a title of a post from somewhere
-                        </div>
-                        <button class="linkOut action"></button>
-                    </article>
-
-                    <article class="post-lg">
-                        <div class="title">
-                            This is a title of a post from somewhere
-                        </div>
-                        <button class="linkOut action"></button>
-                    </article>
-
-
-                    <article class="post-lg">
-                        <div class="title">
-                            This is a title of a post from somewhere
-                        </div>
-                        <button class="linkOut action"></button>
-                    </article>
-
-                    <article class="post-sm">
-                        <div class="title">
-                            This is a title of a post from somewhere
-                        </div>
-                        <button class="linkOut action"></button>
-                    </article>
                 </section>
+
                 <footer>
                     Copyright 2014 &copy; <a href="http://www.kaceycoughlin.com/" title="www.kaceycoughlin.com">Kacey Coughlin</a>
                 </footer>
             </div>
-
             <aside class="search">
                 <div class="searchbox">
                     <input type="text" value="" placeholder="search">
@@ -103,9 +124,7 @@
                 <div class="results">
                 </div>
             </aside>
-
         </div><!-- end .wrapper -->
-
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>

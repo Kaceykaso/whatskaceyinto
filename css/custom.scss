@@ -1,0 +1,250 @@
+/*# CUSTOM.CSS
+ * 
+ * Custom styles for whatskaceyinto.today
+ *
+ * 1. Base
+ * 2. Layout
+ * 3. Component
+ * 4. State
+ * 5. Theme
+ *
+ */
+ /* VARIABLES */
+$font: Helvetica, sans-serif;
+$font-size: 2vmax;
+
+/* COLORS */
+$text-black: #212121;
+$blue: #3F51B5;
+$light-blue: #03A9F4;
+$grey: #9E9E9E;
+$light-grey: #d8d8d8;
+$green: #259B24;
+$red: #E51C23;
+$light-red: #FFA7AB;
+
+
+/*#region 1. BASE */
+body {
+	background: $grey;
+	font: $font-size/1.5 $font;
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+a,
+select {
+	border-bottom: 1px solid;
+	-webkit-transition: 0.25s ease;
+	transition: 0.25s ease;
+}
+/*#endregion 1. BASE */
+/*#region 2. LAYOUT */
+header {
+	background: #333;
+	color: #fff;
+	font: ($font-size*3)/1.5 $font;
+	min-height: 3vmax;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 10;
+}
+
+nav {
+	padding: 0.5vmax;
+}
+
+.wrapper {
+	display: -webkit-flex;
+  display:         flex;
+  overflow: hidden;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+	-webkit-transition: 500ms ease;
+	transition: 500ms ease;
+
+	& > div {
+		box-shadow: -3px 0 10px rgba(0,0,0,0.5);
+	}
+}
+
+section {
+	background: transparent;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	-webkit-flex: 1 1 auto;
+	flex: 1 1 auto;
+	height: 100%;
+	margin: 6vmax 0 4vmax 0;
+	width: 100%;
+
+	& > article {
+		-webkit-flex: 1 1 auto;
+		flex: 1 1 auto;
+	}
+}
+
+aside {
+	background: purple;
+	color: #fff;
+	padding: 6vmax 1.5vmax;
+
+	&.menu, .search {
+		margin: 0;
+	}
+
+	& h2 {
+		font-size: 80%;
+		line-height: 1;
+		margin-bottom: 0;
+	}
+
+	& p {
+		font-size: 50%;
+		margin-top: 0;
+	}
+
+	&:not(.open) {
+		-webkit-flex: 0 0 0vmax;
+		flex: 0 0 0vmax;
+		padding: 0;
+
+		& > * {
+			display: none;
+		}
+	}
+
+	&.open {
+		-webkit-flex: 0 0 30vmax;
+		flex: 0 0 30vmax;
+	}
+}
+
+article {
+	background: rgba(255,255,255,0.8);
+	border: none;
+	box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+	color: $text-black;
+	height: $font-size*10;
+	margin: 0 1.5vmax 2vmax 0;
+	position: relative;
+	width: $font-size*10;
+
+	&.post-lg {
+		width: $font-size*20;
+	}
+}
+
+footer {
+	background: rgba(0,0,0,0.8);
+	bottom: 0;
+	color: $grey;
+	font-size: $font-size/2;
+	height: 2vmax;
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+}
+/*#endregion 2. LAYOUT */
+/*#region 3. COMPONENT */
+button {
+	font-size: $font-size*1.5;
+	line-height: 1.5;
+	margin: 0 1vmax 0;
+	-webkit-transition: 0.25s;
+	transition: 0.25s;
+}
+
+.linkOut {
+	background: $red;
+	border-radius: 50%;
+	bottom: -1vmax;
+	box-shadow:  0 3px 6px rgba(0,0,0,0.5);
+	color: #fff;
+	height: 3vmax;
+	position: absolute;
+	right: 0;
+	width: 3vmax;
+
+	&:after {
+		content: '';
+		border: 3px solid;
+		border-top: none;
+		border-left: none;
+		height: 1vmax;
+		position: absolute;
+		left: $font-size/3;
+		top: $font-size/2.3;
+		width: $font-size/2;
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+	}
+}
+
+.menu {
+	@extend button;
+	float: left;
+}
+
+.picture {
+	background: url('https://media.licdn.com/mpr/mpr/shrink_200_200/p/8/000/1cd/0dc/28c329a.jpg') no-repeat top left;
+	border-radius: 50%;
+	height: 15vmax;
+	margin: 0 auto;
+	width: 15vmax;
+}
+
+.search {
+	@extend button;
+	float: right;
+}
+
+.title {
+	font-size: 2vmax;
+	line-height: 1.5;
+}
+
+article .title {
+	background: #fff;
+	bottom: 0;
+	font-size: $font-size/1.5;
+	overflow: hidden;
+	padding: $font-size/2;
+	padding-right: $font-size*2;
+	position: absolute;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+}
+/*#endregion 3. COMPONENT */
+/*#region 4. STATE */
+a:hover,
+button:hover {
+	color: $blue;
+}
+
+a:active,
+button:active {
+	color: $red;
+}
+
+aside h2:hover,
+aside p:hover {
+	color: inherit;
+}
+
+.linkOut:hover:after {
+	border-color: $light-red;
+}
+/*#endregion 4. STATE */
+/*#region 5. THEME */
+
+/*#endregion 5. THEME */
+/*#end .css */
